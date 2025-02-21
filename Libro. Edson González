@@ -1,0 +1,96 @@
+#include <iostream>
+#include <string>
+
+using namespace std; 
+
+class Libro {
+private: 
+	string titulo;
+	int anio;
+	
+public :
+	Libro(string _titulo, int _anio) {
+		titulo = _titulo;
+		anio = _anio;
+	}
+
+	void mostrarDatos() {
+		cout << " titulo: " << titulo << ", anio: " << anio << endl;
+	}
+
+};
+
+class Comics : public Libro {
+private: 
+	string genero;
+
+public: 
+	Comics(string _titulo, int _anio, string _genero):
+	Libro (_titulo, _anio) { 
+		genero = _genero;
+	}
+
+	void mostrarTipoGenero() {
+		mostrarDatos();
+		cout << "Tipo de generos: " << genero << endl;
+	}
+
+};
+
+class Novela_ligera : public Libro {
+private:
+	string Volumen;
+
+public:
+	Novela_ligera(string _titulo, int _anio, string _Volumen):
+	Libro (_titulo, _anio) {
+		Volumen = _Volumen;
+	}
+
+	void mostrarNumVolumenes() {
+		mostrarDatos();
+		cout << "Numero de volumenes: " << Volumen << endl;
+	}
+
+};
+
+
+class Revista : public Libro {
+private:
+	string numEdicion;
+
+public:
+	Revista(string _titulo, int _anio, string _numEdicion):
+		Libro(_titulo, _anio) {
+		numEdicion = _numEdicion;
+	}
+
+	void mostrarnumeroEdicion() {
+		mostrarDatos();
+		cout << "Numero de edicion: " << numEdicion << endl;
+	}
+
+};
+
+int main() {
+	string titulo, genero, volumen, numEdicion;
+
+	cout << "Ingrese el titulo del libro: ";
+	cin >> titulo;
+
+	cout << "Ingrese el genero: ";
+	cin >> genero;
+
+	cout << "Ingrese el volumen: ";
+	cin >> volumen;        
+
+	cout << "Ingrese el numero de edicion: ";
+	cin >> numEdicion;
+
+	Libro Libro(titulo, genero, volumen, numEdicion);
+
+	Libro.mostrarTipodeLibro();
+
+	return 0;
+
+}
