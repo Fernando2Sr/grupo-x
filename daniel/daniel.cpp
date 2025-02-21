@@ -1,19 +1,61 @@
-// daniel.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
-//
-
 #include <iostream>
+#include <string>
 
-int main()
-{
-    std::cout << "Hello World!\n";
+using namespace std;
+
+// Clase base (padre)
+class Celular {
+protected:
+    string marca;
+    string modelo;
+
+public:
+    Celular(string m, string mod) : marca(m), modelo(mod) {}
+
+    virtual void mostrarInfo() {
+        cout << "Marca: " << marca << ", Modelo: " << modelo << endl;
+    }
+
+    virtual void sistemaOperativo() = 0; // Método puro (hace la clase abstracta)
+};
+
+// Clase derivada Android
+class Android : public Celular {
+private:
+    string versionAndroid;
+
+public:
+    Android(string m, string mod, string version) : Celular(m, mod), versionAndroid(version) {}
+
+    void sistemaOperativo() override {
+        cout << "Este es un celular Android con version " << versionAndroid << endl;
+    }
+};
+
+// Clase derivada iPhone
+class iPhone : public Celular {
+private:
+    string versioniOS;
+
+public:
+    iPhone(string m, string mod, string version) : Celular(m, mod), versioniOS(version) {}
+
+    void sistemaOperativo() override {
+        cout << "Este es un iPhone con iOS version " << versioniOS << endl;
+    }
+};
+
+
+int main() {
+    Android samsung("Samsung", "Galaxy S23", "13.0");
+    iPhone apple("Apple", "iPhone 14", "16.3");
+
+    samsung.mostrarInfo();
+    samsung.sistemaOperativo();
+
+    apple.mostrarInfo();
+    apple.sistemaOperativo();
+
+    return 0;
 }
 
-// Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
-// Depurar programa: F5 o menú Depurar > Iniciar depuración
-
-// Sugerencias para primeros pasos: 1. Use la ventana del Explorador de soluciones para agregar y administrar archivos
-//   2. Use la ventana de Team Explorer para conectar con el control de código fuente
-//   3. Use la ventana de salida para ver la salida de compilación y otros mensajes
-//   4. Use la ventana Lista de errores para ver los errores
-//   5. Vaya a Proyecto > Agregar nuevo elemento para crear nuevos archivos de código, o a Proyecto > Agregar elemento existente para agregar archivos de código existentes al proyecto
-//   6. En el futuro, para volver a abrir este proyecto, vaya a Archivo > Abrir > Proyecto y seleccione el archivo .sln
